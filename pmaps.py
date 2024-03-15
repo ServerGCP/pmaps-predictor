@@ -52,12 +52,12 @@ def main():
         st.sidebar.text("Making Predictions...")
         preds = model.predict(processed_df)
         probs = model.predict_proba(processed_df)
-        probs = list(map(lambda x: round(max(x),2), probs))
+        probs = list(map(lambda x: str(round(100*max(x),2))+'%', probs))
 
         df_out = processed_df.copy(deep=True)
         df_out['Performance'] = list(map(lambda x: x.split('_')[0] , preds))
         df_out['Attrition'] = list(map(lambda x: x.split('_')[1] , preds))
-        df_out['Probability'] = probs
+        df_out['Confidence'] = probs
 
         df_out = df_out[['Performance', 'Attrition', 'Probability']].astype(str)
         st.sidebar.text("Saving Predictions...")
