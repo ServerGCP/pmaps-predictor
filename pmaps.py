@@ -59,7 +59,7 @@ def main():
         df_out['Attrition'] = list(map(lambda x: x.split('_')[1] , preds))
         df_out['Confidence'] = probs
 
-        df_out = df_out[['Performance', 'Attrition', 'Probability']].astype(str)
+        df_out = df_out[['Performance', 'Attrition', 'Confidence']].astype(str)
         st.sidebar.text("Saving Predictions...")
         st.sidebar.text("Completed!")
 
