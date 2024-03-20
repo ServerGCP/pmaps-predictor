@@ -24,7 +24,7 @@ def processing(df):
     df = df.groupby(['EmailAddress', 'OriginalQuestionId']).last().reset_index()
     
     st.text("Step 5: Pivoting the DataFrame...")
-    df_pivoted = df.pivot(index='CandidateUniqueId', columns='OriginalQuestionId', values='OriginalOptionId')
+    df_pivoted = df.pivot(index='EmailAddress', columns='OriginalQuestionId', values='OriginalOptionId')
     df_pivoted = df_pivoted.fillna(0).astype(int)
     
     st.text("Step 6: One-hot encoding the data...")
